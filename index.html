@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Juego: Turista Mundial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="bg-primary text-white text-center p-4">
+        <h1>Turista Mundial: Asistente de Juego</h1>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Menú</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="nav-cartas">Cartas Digitales (FAX / E-MAIL)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-instructivo">Instructivo del Juego</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <section id="seccion-cartas">
+            <h2 class="mb-4 text-center">Módulo de Cartas Digitales</h2>
+            <div class="card text-center shadow-lg game-card">
+                <div class="card-header">
+                    Tu FAX o E-MAIL ha llegado:
+                </div>
+                <div class="card-body" id="card-display">
+                    <p class="card-text">Presiona el botón para recibir tu primera carta.</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <button id="draw-card-btn" class="btn btn-primary btn-lg pulse">Tomar una Carta</button>
+                    <p class="mt-2" id="card-counter"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="seccion-instructivo" class="d-none">
+            <h2 class="mb-4">Instructivo del Juego Turista Mundial Clásico</h2>
+            <div class="accordion" id="accordionInstructivo">
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseObjetivo">
+                            OBJETIVO DEL JUEGO
+                        </button>
+                    </h2>
+                    <div id="collapseObjetivo" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Lograr ser el participante más rico del juego o el único jugador que no quede en quiebra.</p>
+                            <p>El jugador más rico será aquel que sumando el valor de sus propiedades y dinero, tenga más capital acumulado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAntes">
+                            ANTES DEL JUEGO
+                        </button>
+                    </h2>
+                    <div id="collapseAntes" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Antes de comenzar, los jugadores ponen el límite del juego. Los límites pueden ser dos:</p>
+                            <ul>
+                                <li><strong>Juego largo:</strong> el juego termina hasta que todos los jugadores, menos uno, queden en quiebra (el jugador que no quebró será el ganador).</li>
+                                <li><strong>Poner un tiempo de juego:</strong> (Por ejemplo, dos horas), y al final de este tiempo, el jugador con más capital acumulado será el ganador.</li>
+                            </ul>
+                            <p>Cada jugador elige una ficha de avance y la pone en la SALIDA.</p>
+                            <p>Se toman todas las cartitas marcadas como FAX y las marcadas como E-MAIL y se colocan boca abajo en el lugar que se especifica en el tablero.</p>
+                            <p>Cada jugador recibe $75,000 (4 billetes de $500, 4 billetes de $1000, 2 billetes de $2000, 1 billetes de $5000, 1 billetes de $10000 y 1 billetes de $50000).</p>
+                            <p>Se elige a una persona para que sea el banco. El jugador que reciba el banco deberá cuidar no revolver sus pertenencias (títulos, dinero, casas, etc.) con las del banco.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFormaJuego">
+                            FORMA DE JUEGO
+                        </button>
+                    </h2>
+                    <div id="collapseFormaJuego" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Cada jugador tirará un dado. El participante que obtenga el número más alto será el que inicie el juego.</p>
+                            <p>Cada participante en su turno tirará los dos dados y avanzará el número de casillas que le marquen. Cuando termine, el turno pasará al jugador de la izquierda.</p>
+                            <p>Las fichas irán avanzando por las casillas de los distintos países, siempre en contra de las manecillas del reloj.</p>
+                            <p>Si en un mismo turno, el jugador tira los dados y los dos caen en el mismo número (DOBLES), el jugador avanzará normalmente, pero tendrá otro turno extra. Si en este turno extra vuelve a obtener DOBLES, tendrá nuevamente otro turno extra, pero si por tercera vez vuelve a obtener DOBLES el jugador irá directamente a la casilla de DEPORTADO.</p>
+                            <p>En cada turno, el jugador podrá caer en:</p>
+                            <ul>
+                                <li><strong>Un país:</strong> Si el jugador cae en un país, podrá comprarlo si no tiene dueño. Pero si tiene dueño deberá pagar la renta. Si el jugador cayera en un país sin dueño y no quisiera comprarlo, el banco lo subastará.</li>
+                                <li><strong>FAX o E-MAIL:</strong> Si el jugador cae en una casilla marcada como FAX o como E-MAIL, deberá tomar del tablero una carta y seguir las instrucciones.</li>
+                                <li><strong>La casilla de DEPORTADO:</strong> En caso de tirar los dados y caer en la casilla de DEPORTADO el jugador únicamente estará de visita y seguirá su turno normalmente.</li>
+                                <li><strong>Una línea aérea, consulado o embajada:</strong> Si el jugador cae en una de estas propiedades, podrá comprarla si no tiene dueño. Pero si tiene dueño deberá pagar la renta. Si el jugador cayera en alguna de estas propiedades sin dueño y no quisiera comprarla, el banco la subastará.</li>
+                                <li><strong>Australia:</strong> En el caso de caer en Australia, el jugador únicamente pasará un bonito día y no tendrá que hacer nada.</li>
+                                <li><strong>Pase a la casilla de DEPORTADO:</strong> Si algún jugador cae en esta casilla, automáticamente será enviado a la casilla de DEPORTADO.</li>
+                            </ul>
+                            <p>Los jugadores podrán comprar propiedades desde la primera vuelta. Los jugadores sólo podrán pedir dinero prestado al banco, hipotecando sus propiedades. Ningún jugador puede pedir prestado o prestar a otro.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBanco">
+                            1. BANCO
+                        </button>
+                    </h2>
+                    <div id="collapseBanco" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>EL BANCO tiene las siguientes facultades y obligaciones:</p>
+                            <ul>
+                                <li>Guarda antes de que se utilicen en el juego el dinero restante, los títulos de propiedad, las casas y los hoteles.</li>
+                                <li>Paga los sueldos y gratificaciones.</li>
+                                <li>Vende las propiedades, las casas y los hoteles a los jugadores.</li>
+                                <li>Les hipoteca propiedades a los participantes que así lo pidan.</li>
+                                <li>El banco cobra todas las multas, contribuciones, préstamos, intereses, etc.</li>
+                                <li>El banco NUNCA queda en quiebra. Si se queda sin dinero, podrá emitir todo el que requiera escribiéndolo en un papel.</li>
+                                <li>El banco se encargará de SUBASTAR la propiedad que no sea adquirida por la persona que cayó en ella.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSueldo">
+                            2. SUELDO
+                        </button>
+                    </h2>
+                    <div id="collapseSueldo" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Cada vez que un jugador pase o caiga en la casilla de SALIDA, cobrará un SUELDO de $10,000 al banco. Si el jugador en turno llega o pasa por la SALIDA y no cobra su sueldo antes de que inicie su turno el siguiente jugador, NO recibirá sueldo en esa vuelta. Cuando un jugador sea DEPORTADO, NO podrá cobrar su sueldo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCompra">
+                            3. COMPRA DE PROPIEDADES
+                        </button>
+                    </h2>
+                    <div id="collapseCompra" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Si un jugador decide comprar la propiedad en la que cae (si no tiene dueño), le dará al banco el importe marcado y recibirá el TÍTULO DE PROPIEDAD. Si prefiere no comprar la propiedad, el banco inmediatamente la subastará. El dueño no podrá cobrar renta de las propiedades hipotecadas.</p>
+                            <p>Los países están divididos en BLOQUES de colores. A los jugadores les conviene ser dueños de bloques completos de países, porque podrán cobrar una renta más alta y podrán comprar en ellos casas y hoteles. Si algún jugador cae en una casilla donde el dueño posee el BLOQUE completo, y no tiene ni casas ni hoteles, el visitante deberá pagar el doble de la renta.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSubasta">
+                            4. SUBASTA
+                        </button>
+                    </h2>
+                    <div id="collapseSubasta" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>En caso de que algún jugador no quiera comprar la propiedad en la que acaba de caer, el BANCO se encargará de ponerla en subasta pública. La subasta iniciará con el precio que desee el BANCO y cualquiera de los jugadores podrá participar (incluso el jugador que rechazó la compra). Al final de la subasta, la propiedad se venderá al mejor postor.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDeportado">
+                            5. DEPORTADO
+                        </button>
+                    </h2>
+                    <div id="collapseDeportado" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>En caso de caer en la casilla de DEPORTADO, el jugador sólo quedará en ella como visita y no tendrá ningún castigo. Pero cuando un jugador es formalmente deportado, irá inmediatamente a la casilla de DEPORTADO, perderá su turno y no podrá cobrar su sueldo.</p>
+                            <p>El jugador quedará deportado únicamente por tres razones:</p>
+                            <ul>
+                                <li>Si cae en la casilla de "PASE A LA CASILLA DE DEPORTADO".</li>
+                                <li>Si es enviado a la casilla por un FAX o un E-MAIL.</li>
+                                <li>Si saca DOBLES tres veces consecutivas en el mismo turno.</li>
+                            </ul>
+                            <p>Si un jugador fue enviado a la casilla de DEPORTADO podrá salir únicamente de la siguiente forma:</p>
+                            <ul>
+                                <li>Sacando DOBLES en alguno de los siguientes tres turnos. Si lo logra, saldrá automáticamente y avanzará lo que marquen los dados.</li>
+                                <li>Usando una tarjeta de "RECOJA SU PASAPORTE Y SALGA DE LA CASILLA DE DEPORTADO". Puede comprársela a otro jugador al precio que acuerden.</li>
+                                <li>Pagando una multa al banco de $5,000.</li>
+                            </ul>
+                            <p>El jugador no podrá permanecer DEPORTADO por más de tres turnos; en su tercer turno tendrá que solucionar su situación. Aunque el jugador esté deportado, podrá comprar, vender o hipotecar propiedades y cobrar rentas.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVenta">
+                            6. VENTA DE PROPIEDADES
+                        </button>
+                    </h2>
+                    <div id="collapseVenta" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Cualquier jugador podrá vender sus propiedades a otro en una transacción privada por el precio que acuerden. Las casas y los hoteles NO se pueden vender a otro jugador. Si se quiere vender una propiedad que forma parte de un bloque con construcciones, primero se tienen que vender al banco todas las casas y/u hoteles de ese bloque a la mitad del precio de compra.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCasas">
+                            7. COMPRA DE CASAS Y HOTELES
+                        </button>
+                    </h2>
+                    <div id="collapseCasas" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Para poder edificar casas y/o hoteles en propiedades, el jugador deberá ser dueño del BLOQUE completo de países del mismo color y ninguna de las propiedades del bloque podrá estar hipotecada. El precio a pagar al banco por cada casa está marcado en la propiedad.</p>
+                            <h5>REGLAS DE CONSTRUCCIÓN</h5>
+                            <p>La construcción debe ser uniforme. No se podrá construir más de una casa en una casilla de un bloque, hasta haber construido una casa en cada casilla de dicho bloque. Esto aplica sucesivamente hasta tener cuatro casas por casilla.</p>
+                            <p>Antes de poder comprar un HOTEL, el jugador deberá tener cuatro casas en cada casilla del BLOQUE. Al comprar el hotel, deberá devolver las cuatro casas al banco sin recibir dinero a cambio.</p>
+                            <h5>ESCASEZ DE HOTELES Y/O CASAS</h5>
+                            <p>Cuando el banco no tenga hoteles y/o casas, los participantes que deseen comprarlas, deberán esperar a que otro jugador las devuelva o venda. Si hay escasez y varios jugadores quieren comprar, el banco las subastará al mejor postor.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLineas">
+                            8. LÍNEAS AÉREAS, EMBAJADA Y CONSULADO
+                        </button>
+                    </h2>
+                    <div id="collapseLineas" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>En estas propiedades NO se pueden poner casas ni hoteles.</p>
+                            <p><strong>Líneas Aéreas:</strong> El dueño cobrará renta dependiendo del número de líneas aéreas que posea (la renta correspondiente está marcada en el título de propiedad).</p>
+                            <p><strong>Embajada y Consulado:</strong> Si una persona es dueña de ambas propiedades, cobrará de renta lo que el visitante haya sacado en los dados, multiplicado por 1000. Si es dueño de una sola de estas dos, cobrará lo de los dados multiplicado por 500.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRenta">
+                            9. RENTA
+                        </button>
+                    </h2>
+                    <div id="collapseRenta" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>El jugador que caiga en una casilla con dueño deberá pagar la renta correspondiente. La renta a pagar dependerá de la situación de la propiedad:</p>
+                            <ul>
+                                <li>Si no tiene casas ni hoteles y el dueño no posee el bloque completo, se paga la renta marcada hasta arriba.</li>
+                                <li>Si el dueño posee el bloque de color completo (sin construcciones), el visitante paga el doble de la renta marcada.</li>
+                                <li>Si tiene casas u hotel, el visitante paga la cantidad especificada para ese número de construcciones.</li>
+                            </ul>
+                            <p>La renta para líneas aéreas, consulado o embajada depende de la cantidad de estas propiedades que posea el dueño. Para líneas aéreas, la renta sube mientras más líneas posea. Para la embajada o consulado, se cobrará lo obtenido en los dados multiplicado por 500 si tiene una propiedad, o por 1000 si tiene las dos.</p>
+                            <p><strong>NOTA:</strong> Cualquier propiedad hipotecada NO podrá cobrar renta. Sin embargo, el dueño de un bloque podrá seguir cobrando doble renta en las casillas del mismo bloque que no estén hipotecadas.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHipoteca">
+                            10. HIPOTECA
+                        </button>
+                    </h2>
+                    <div id="collapseHipoteca" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Solamente el banco puede hipotecar una propiedad. El valor de la hipoteca es la mitad del precio de la propiedad y está marcado en el reverso del título. Una vez hipotecada, se voltea el título y no podrá cobrar renta.</p>
+                            <p>No se pueden hipotecar las casas y los hoteles. Si se desea hipotecar una propiedad con construcciones, primero se deben vender al banco a la mitad del precio de compra.</p>
+                            <p>Para quitar la hipoteca, el dueño debe pagar al banco el valor de la hipoteca más un 10% de interés. El dueño de una propiedad hipotecada puede venderla a otro jugador al precio que acuerden, pero la propiedad seguirá hipotecada.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFax">
+                            11. FAX y E-MAIL
+                        </button>
+                    </h2>
+                    <div id="collapseFax" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Cuando un jugador cae en una de estas casillas, tomará una carta y deberá seguir la instrucción al pie de la letra. Después de cumplirla, regresará la carta al fondo del montón (a menos que la carta indique que puede conservarla).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQuiebra">
+                            12. JUGADOR EN QUIEBRA
+                        </button>
+                    </h2>
+                    <div id="collapseQuiebra" class="accordion-collapse collapse" data-bs-parent="#accordionInstructivo">
+                        <div class="accordion-body">
+                            <p>Un jugador queda en quiebra cuando no puede pagar una deuda a otro jugador o al banco.</p>
+                            <p>Si le debe a otro jugador, le entregará todos sus bienes (vendiendo casas/hoteles al banco a mitad de precio) y se retirará del juego. Si entrega propiedades hipotecadas, el nuevo dueño deberá pagar al banco inmediatamente el 10% de interés de cada una.</p>
+                            <p>Si le debe al banco, le entregará todos sus bienes al banco. El banco venderá todas las propiedades en subasta pública y el jugador sale del juego.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center bg-dark text-white mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5 class="text-primary mb-3">🎯 Turista Mundial</h5>
+                    <p class="small mb-0">Asistente digital oficial para el clásico juego de mesa mexicano</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 class="text-secondary mb-3">Características</h6>
+                    <ul class="list-unstyled small">
+                        <li>📧 Sistema de cartas digitales</li>
+                        <li>📋 Instructivo completo</li>
+                        <li>🎮 Interfaz moderna e intuitiva</li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 class="text-secondary mb-3">Créditos</h6>
+                    <p class="small mb-1"><strong>Desarrollo:</strong> Equipo TM Digital</p>
+                    <p class="small mb-1"><strong>Diseño:</strong> UI/UX Team 2024</p>
+                    <p class="small mb-0"><strong>Basado en:</strong> Turista Mundial® Clásico</p>
+                </div>
+            </div>
+            <hr class="my-3 border-secondary">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-md-start">
+                    <p class="small mb-0">&copy; 2024 Turista Mundial Digital Assistant. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="small mb-0">Versión 1.0 | Creado para mejorar tu experiencia de juego</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
